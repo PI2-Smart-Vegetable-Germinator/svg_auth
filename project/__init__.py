@@ -6,10 +6,12 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
+migrate = Migrate()
 ma = Marshmallow()
 bcrypt = Bcrypt()
 jwt = JWTManager()
@@ -19,6 +21,7 @@ app = Flask(__name__)
 app.config.from_object(app_config)
 
 db.init_app(app)
+migrate.init_app(app, db)
 ma.init_app(app)
 bcrypt.init_app(app)
 jwt.init_app(app)
@@ -27,6 +30,9 @@ CORS(app)
 
 from project.api.auth.views import auth_blueprint
 app.register_blueprint(auth_blueprint)
+
+from project.api.auth.models import *
+from project.api.notifications.models import *
 
 
 @app.cli.command('test')
