@@ -1,4 +1,4 @@
-# svg_auth
+# SVG Auth
 Microsserviço de Autenticação &amp; Usuários do SVG.
 
 ## Instalação e Configuração
