@@ -30,8 +30,10 @@ CORS(app)
 
 from project.api.auth.views import auth_blueprint
 from project.api.notifications.views import notifications_blueprint
+from project.api.users.views import users_blueprint
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(notifications_blueprint)
+app.register_blueprint(users_blueprint)
 
 from project.api.auth.models import *
 from project.api.notifications.models import *
