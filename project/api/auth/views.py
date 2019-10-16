@@ -50,6 +50,11 @@ def login():
     user = Users.query.filter_by(email=post_data['email']).first()
 
     if user and check_password_hash(user.password, post_data['password']):
+        if post_data.get('deviceId'):
+            user.device_id = post_data['deviceId']
+            db.session.add(user)
+            db.session.commit()
+
         return jsonify({
             'success': True,
             'userId': user.id
