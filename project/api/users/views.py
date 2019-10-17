@@ -20,3 +20,14 @@ def get_users():
     return jsonify({
         'users': [schema.dump(user) for user in users]
     }), 200
+
+
+@users_blueprint.route('/api/users/<int:id>', methods=['GET'])
+def get_single_user(id):
+    schema = UsersSchema()
+
+    user = Users.query.filter_by(id=id).first()
+
+    return jsonify({
+        'user': schema.dump(user)
+    }), 200
