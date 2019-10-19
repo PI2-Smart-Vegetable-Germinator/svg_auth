@@ -49,6 +49,7 @@ def pair_user_to_machine():
 
     return jsonify({
         'success': True
+    }), 200
 
 @users_blueprint.route('/api/user/<user_id>', methods=['GET'])
 def get_user(user_id):
