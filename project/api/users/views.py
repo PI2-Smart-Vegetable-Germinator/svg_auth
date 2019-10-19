@@ -22,6 +22,7 @@ def get_users():
     }), 200
 
 
+
 @users_blueprint.route('/api/users/<int:id>', methods=['GET'])
 def get_single_user(id):
     schema = UsersSchema()
@@ -48,4 +49,15 @@ def pair_user_to_machine():
 
     return jsonify({
         'success': True
+
+@users_blueprint.route('/api/user/<user_id>', methods=['GET'])
+def get_user(user_id):
+
+    user = Users.query.filter_by(id=int(user_id)).first()
+
+    return jsonify({
+        'email': user.email,
+        'deviceId': user.device_id,
+        'machineId': user.machine_id
+
     }), 200
