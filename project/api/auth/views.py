@@ -57,7 +57,8 @@ def login():
 
         return jsonify({
             'success': True,
-            'userId': user.id
+            'userId': user.id,
+            'machineId': user.machine_id
         }), 201
 
     return jsonify({
